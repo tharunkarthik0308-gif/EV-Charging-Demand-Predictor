@@ -243,6 +243,40 @@ const ForecastPage: React.FC = () => {
               </ResponsiveContainer>
             </div>
           </div>
+
+          {/* Day-by-Day Forecast Numerical Comparison Table */}
+          <div className="bg-slate-900 border border-slate-800 rounded-xl overflow-hidden shadow-md">
+            <div className="p-4 border-b border-slate-800 bg-slate-950 flex justify-between items-center">
+              <h4 className="font-bold text-sm text-white">Day-by-Day Model Forecast Comparison</h4>
+              <span className="text-xs text-slate-400">All models evaluated over consistent {forecast.horizon}-day horizon</span>
+            </div>
+            <div className="overflow-x-auto">
+              <table className="w-full text-left border-collapse text-xs">
+                <thead>
+                  <tr className="border-b border-slate-800 text-slate-400 font-semibold uppercase bg-slate-950/60">
+                    <th className="py-3 px-6">Horizon</th>
+                    <th className="py-3 px-6">Date</th>
+                    <th className="py-3 px-6 text-right text-purple-400">SMA (sessions)</th>
+                    <th className="py-3 px-6 text-right text-emerald-400">WMA (sessions)</th>
+                    <th className="py-3 px-6 text-right text-blue-400">Linear Regression</th>
+                    <th className="py-3 px-6 text-right text-brand-400 font-bold">Ensemble Final Forecast</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-slate-800/60 font-mono text-slate-300">
+                  {Array.from({ length: forecast.horizon }).map((_, idx) => (
+                    <tr key={idx} className="hover:bg-slate-850/40 transition">
+                      <td className="py-3 px-6 text-slate-400 font-semibold">Day +{idx + 1}</td>
+                      <td className="py-3 px-6 text-slate-200">{forecast.forecastDates[idx]}</td>
+                      <td className="py-3 px-6 text-right text-purple-300">{forecast.smaForecast[idx].toFixed(2)}</td>
+                      <td className="py-3 px-6 text-right text-emerald-300">{forecast.wmaForecast[idx].toFixed(2)}</td>
+                      <td className="py-3 px-6 text-right text-blue-300">{forecast.lrForecast[idx].toFixed(2)}</td>
+                      <td className="py-3 px-6 text-right font-bold text-brand-400 bg-brand-500/5">{forecast.finalForecast[idx].toFixed(2)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       ) : (
         <div className="bg-slate-900 border border-slate-800 p-16 rounded-xl text-center text-slate-500 flex flex-col items-center gap-3">

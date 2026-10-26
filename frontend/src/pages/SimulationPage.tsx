@@ -116,9 +116,9 @@ const SimulationPage: React.FC = () => {
               onChange={(e) => setStationType(e.target.value)}
               className="w-full bg-slate-950 border border-slate-800 rounded-lg px-3 py-2 text-sm text-slate-300 outline-none focus:border-brand-500"
             >
-              <option value="FAST">Fast Charging Station (+24 cap/day)</option>
-              <option value="SLOW">Slow Charging Station (+8 cap/day)</option>
-              <option value="SOLAR">Solar Charging Station (+12 cap/day)</option>
+              <option value="FAST">Fast Charging Station (+40 sessions/day)</option>
+              <option value="SLOW">Slow Charging Station (+20 sessions/day)</option>
+              <option value="SOLAR">Solar Charging Station (+30 sessions/day)</option>
             </select>
           </div>
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Download, RefreshCw, FileText, AlertTriangle } from 'lucide-react';
+import { API_BASE_URL } from '../api';
 
 const ReportsPage: React.FC = () => {
   const [preview, setPreview] = useState<string>('');
@@ -12,7 +13,7 @@ const ReportsPage: React.FC = () => {
       setLoading(true);
       setError('');
       // Fetch text report directly to display in preview box
-      const response = await axios.get('http://localhost:8080/api/reports/download?format=txt', {
+      const response = await axios.get(`${API_BASE_URL}/reports/download?format=txt`, {
         responseType: 'text'
       });
       setPreview(response.data);
@@ -30,7 +31,7 @@ const ReportsPage: React.FC = () => {
 
   const handleDownload = (format: 'txt' | 'csv') => {
     // Direct browser redirect to download endpoint
-    window.open(`http://localhost:8080/api/reports/download?format=${format}`, '_blank');
+    window.open(`${API_BASE_URL}/reports/download?format=${format}`, '_blank');
   };
 
   if (loading) {

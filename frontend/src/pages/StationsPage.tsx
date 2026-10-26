@@ -48,12 +48,44 @@ const StationsPage: React.FC = () => {
     }
   };
 
+  // Build lookup maps for reliable zone mapping
+  const zoneMap = new Map<number, string>();
+  const stationToZoneMap = new Map<number, { id: number; name: string }>();
+
+  zones.forEach(z => {
+    zoneMap.set(z.id, z.name);
+    if (Array.isArray(z.stations)) {
+      z.stations.forEach(st => {
+        if (st && st.id) {
+          stationToZoneMap.set(st.id, { id: z.id, name: z.name });
+        }
+      });
+    }
+  });
+
+  const getStationZoneInfo = (station: Station): { id?: number; name: string } => {
+    if (station.zoneName) {
+      return { id: station.zoneId || station.zone?.id, name: station.zoneName };
+    }
+    if (station.zoneId && zoneMap.has(station.zoneId)) {
+      return { id: station.zoneId, name: zoneMap.get(station.zoneId)! };
+    }
+    if (stationToZoneMap.has(station.id)) {
+      return stationToZoneMap.get(station.id)!;
+    }
+    if (station.zone?.name) {
+      return { id: station.zone.id, name: station.zone.name };
+    }
+    if (station.zone?.id && zoneMap.has(station.zone.id)) {
+      return { id: station.zone.id, name: zoneMap.get(station.zone.id)! };
+    }
+    return { name: 'Unknown Zone' };
+  };
+
   // Filter Logic
   const filteredStations = stations.filter(s => {
-    // Note: s.zone might contain zone object or zone ID depending on how hibernate serializes.
-    // In our JPA code: Station contains Zone zone. So in JSON it will serialize to: zone: { id, name, ... }.
-    // Let's handle it safely by checking s.zone.id.
-    const stationZoneId = (s as any).zone?.id?.toString() || '';
+    const zoneInfo = getStationZoneInfo(s);
+    const stationZoneId = zoneInfo.id ? zoneInfo.id.toString() : '';
     const matchesZone = zoneFilter === 'ALL' || stationZoneId === zoneFilter;
     const matchesType = typeFilter === 'ALL' || s.stationType === typeFilter;
     
@@ -165,7 +197,7 @@ const StationsPage: React.FC = () => {
               {filteredStations.map(station => (
                 <tr key={station.id} className="hover:bg-slate-850/40 transition">
                   <td className="py-3.5 px-6 font-mono text-xs text-slate-400">#ST-{station.id}</td>
-                  <td className="py-3.5 px-6 font-semibold text-slate-200">{(station as any).zone?.name || 'Unknown Zone'}</td>
+                  <td className="py-3.5 px-6 font-semibold text-slate-200">{getStationZoneInfo(station).name}</td>
                   <td className="py-3.5 px-6">
                     <div className="flex items-center gap-2">
                       {getStationTypeIcon(station.stationType)}

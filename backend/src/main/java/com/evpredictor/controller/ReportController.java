@@ -15,7 +15,7 @@ public class ReportController {
     @Autowired
     private ReportService reportService;
 
-    @GetMapping("/download")
+    @GetMapping({"", "/download"})
     public ResponseEntity<byte[]> downloadReport(@RequestParam(defaultValue = "txt") String format) {
         String content;
         String filename;

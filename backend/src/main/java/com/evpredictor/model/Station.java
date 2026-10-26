@@ -52,4 +52,14 @@ public abstract class Station {
 
     // Polymorphic method to calculate charging time in hours
     public abstract double calculateChargingTime(Vehicle vehicle);
+
+    @com.fasterxml.jackson.annotation.JsonProperty("zoneId")
+    public Long getZoneId() {
+        return zone != null ? zone.getId() : null;
+    }
+
+    @com.fasterxml.jackson.annotation.JsonProperty("zoneName")
+    public String getZoneName() {
+        return zone != null ? zone.getName() : null;
+    }
 }

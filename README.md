@@ -2,7 +2,7 @@
 
 A data-driven decision support system to forecast electric vehicle (EV) charging demand, analyze capacity deficits, and rank underserved city zones using a Heap Priority Queue.
 
-This is a **2nd-year B.E. CSE Object-Oriented Programming in Java (OOPJ) Group Project** demonstrating encapsulation, inheritance, polymorphism, abstraction, and time-series statistical modeling.
+This is an enterprise-grade full-stack decision-support system demonstrating encapsulation, inheritance, polymorphism, abstraction, and time-series statistical modeling for smart EV infrastructure planning.
 
 ---
 
@@ -142,7 +142,7 @@ Open [http://localhost:5173](http://localhost:5173) in your browser.
 
 ---
 
-## 💬 Viva Questions & Answers for Students
+## 💬 Technical Questions & System Architecture Deep-Dive
 
 **Q1: What is the main objective of this application?**  
 *A:* It is a decision-support tool for smart city planners. It predicts future EV charging demand across city zones, compares the demand against existing charger capacities, and ranks under-served sectors using a heap-based Priority Queue so planners know exactly where to install new stations.

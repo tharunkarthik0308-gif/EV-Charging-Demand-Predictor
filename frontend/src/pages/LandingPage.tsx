@@ -32,7 +32,7 @@ const LandingPage: React.FC = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="flex flex-col gap-6">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/30 text-brand-500 w-fit text-sm font-medium">
-              ⚡ 2nd-Year B.E. CSE OOPJ Project
+              ⚡ Smart EV Grid Infrastructure Planning
             </div>
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
               Smart EV Charging <br />

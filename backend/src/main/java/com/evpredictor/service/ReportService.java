@@ -63,7 +63,7 @@ public class ReportService {
         txt.append("                                   EV CHARGING INFRASTRUCTURE REPORT                                    \n");
         txt.append("=========================================================================================================\n");
         txt.append(String.format("Generated on: %s\n", java.time.LocalDateTime.now().toString()));
-        txt.append("Project: B.E. CSE OOPJ Group Project - EV Charging Demand Predictor\n");
+        txt.append("Project: EV Charging Demand Predictor\n");
         txt.append("---------------------------------------------------------------------------------------------------------\n\n");
 
         txt.append("1. HIGH PRIORITY UNDER-SERVED ZONES RANKING\n");

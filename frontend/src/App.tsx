@@ -90,7 +90,7 @@ const AppLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
 
         {/* Sidebar Footer info */}
         <div className="border-t border-slate-800/80 pt-4 mt-auto text-[10px] text-slate-500 text-center font-mono">
-          <span>B.E. CSE Group Project</span>
+          <span>EV Charging Demand Predictor</span>
         </div>
       </aside>
 
